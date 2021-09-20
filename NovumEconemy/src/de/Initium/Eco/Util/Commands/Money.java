@@ -27,12 +27,12 @@ public class Money implements CommandExecutor {
         if(sender instanceof Player) {
             Player p = (Player) sender;
             if (!(p.hasPermission("NE.eco.Main"))) {
-                p.sendMessage(MainDis.MissingMainPerms); //config
+                p.sendMessage(MainDis.Prefix +MainDis.MissingMainPerms); //config
                 return true;
             }
             if(args.length == 0) {
                 if(Main.playerBank.containsKey(p.getUniqueId())) {
-                    p.sendMessage(MainDis.Balance.replace("%value%", String.valueOf(Main.getImplementer().getBalance(p.getName()))).replace("%currency%", MainDis.CurName));
+                    p.sendMessage(MainDis.Prefix +MainDis.Balance.replace("%value%", String.valueOf(Main.getImplementer().getBalance(p.getName()))).replace("%currency%", MainDis.CurName));
                 }
             }
             if(args.length == 2) {
@@ -40,7 +40,7 @@ public class Money implements CommandExecutor {
                         Object temp = parseUIntOrNull(args[1]);
                         if(temp == null)
                         {
-                            p.sendMessage(MainDis.PageNumberOver0);
+                            p.sendMessage(MainDis.Prefix +MainDis.PageNumberOver0);
                         }else {
                             Integer arg_numb = (Integer) temp;
                             //Sort HashMap Values after Size
@@ -87,16 +87,16 @@ public class Money implements CommandExecutor {
                         OfflinePlayer t = Bukkit.getOfflinePlayer(args[0]);
                         if(!t.isOnline()) {
                             if(Main.playerBank.containsKey(t.getUniqueId())) {
-                                p.sendMessage(MainDis.BalanceStranger.replace("%target%", t.getName()).replace("%value%", String.valueOf(Main.getImplementer().getBalance(t.getName()))).replace("%currency%", MainDis.CurName));
+                                p.sendMessage(MainDis.Prefix +MainDis.BalanceStranger.replace("%target%", t.getName()).replace("%value%", String.valueOf(Main.getImplementer().getBalance(t.getName()))).replace("%currency%", MainDis.CurName));
                             }else {
-                                p.sendMessage(MainDis.NoBalance); //config
+                                p.sendMessage(MainDis.Prefix +MainDis.NoBalance); //config
                             }
                         }else {
                             Player online = t.getPlayer();
                             if(Main.playerBank.containsKey(online.getUniqueId())) {
-                                p.sendMessage(MainDis.BalanceStranger.replace("%target%", online.getName()).replace("%value%", String.valueOf(Main.getImplementer().getBalance(online.getName()))).replace("%currency%", MainDis.CurName));
+                                p.sendMessage(MainDis.Prefix +MainDis.BalanceStranger.replace("%target%", online.getName()).replace("%value%", String.valueOf(Main.getImplementer().getBalance(online.getName()))).replace("%currency%", MainDis.CurName));
                             }else {
-                                p.sendMessage(MainDis.NoBalance); //config
+                                p.sendMessage(MainDis.Prefix +MainDis.NoBalance); //config
                             }
 
                         }

@@ -25,7 +25,7 @@ public class Set implements CommandExecutor {
         if(sender instanceof Player) {
             Player p = (Player) sender;
             if (!(p.hasPermission("NE.eco.Main"))) {
-                p.sendMessage(MainDis.MissingMainPerms); //config
+                p.sendMessage(MainDis.Prefix +MainDis.MissingMainPerms); //config
                 return true;
             }
             if(isDouble(args[1])) {
@@ -34,17 +34,17 @@ public class Set implements CommandExecutor {
                     if(!t.isOnline()) {
                         Main.getImplementer().withdrawPlayer(t, Main.getImplementer().getBalance(t));
                         Main.getImplementer().depositPlayer(t, Double.parseDouble(args[1]));
-                        p.sendMessage(MainDis.MoneySetSuccess.replace("%target%", t.getName()).replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
-                        p.sendMessage(MainDis.MoneySetMessage.replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
+                        p.sendMessage(MainDis.Prefix +MainDis.MoneySetSuccess.replace("%target%", t.getName()).replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
+                        p.sendMessage(MainDis.Prefix +MainDis.MoneySetMessage.replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
                     }else {
                         Player online = t.getPlayer();
                         Main.getImplementer().withdrawPlayer(online.getName(), Main.getImplementer().getBalance(t));
                         Main.getImplementer().depositPlayer(online.getName(), Double.parseDouble(args[1]));
-                        p.sendMessage(MainDis.MoneySetMessage.replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
+                        p.sendMessage(MainDis.Prefix +MainDis.MoneySetMessage.replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
                     }
                 }
             }else {
-                p.sendMessage(MainDis.WrongInput);
+                p.sendMessage(MainDis.Prefix +MainDis.WrongInput);
             }
 
         }

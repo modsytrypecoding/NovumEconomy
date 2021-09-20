@@ -25,45 +25,45 @@ public class Take implements CommandExecutor {
         if(sender instanceof Player) {
             Player p = (Player) sender;
             if (!(p.hasPermission("NE.eco.Main"))) {
-                p.sendMessage(MainDis.MissingMainPerms);
+                p.sendMessage(MainDis.Prefix +MainDis.MissingMainPerms);
                 return true;
             }
 
             if(p.hasPermission("NE.eco.take")) {
                 if(isDouble(args[1])) {
                     if(args[0].equalsIgnoreCase(p.getName())) {
-                        p.sendMessage(MainDis.SameName);
+                        p.sendMessage(MainDis.Prefix +MainDis.SameName);
                     }else {
                         OfflinePlayer t = Bukkit.getOfflinePlayer(args[0]);
                         if(Main.playerBank.containsKey(t.getUniqueId())) {
                             if(!t.isOnline()) {
                                 if(Main.getImplementer().getBalance(t) < Double.parseDouble(args[1])) {
-                                    p.sendMessage(MainDis.MoneyTakeError); //config
-                                    p.sendMessage(MainDis.BalanceStranger.replace("%target%", t.getName()).replace("%value%", String.valueOf(Main.getImplementer().getBalance(t))).replace("%currency%", MainDis.CurName));
+                                    p.sendMessage(MainDis.Prefix +MainDis.MoneyTakeError); //config
+                                    p.sendMessage(MainDis.Prefix +MainDis.BalanceStranger.replace("%target%", t.getName()).replace("%value%", String.valueOf(Main.getImplementer().getBalance(t))).replace("%currency%", MainDis.CurName));
                                 }else {
                                     Main.getImplementer().withdrawPlayer(t, Double.parseDouble(args[1]));
-                                    p.sendMessage(MainDis.MoneyTakeSuccess.replace("%target%", t.getName()).replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
-                                    p.sendMessage(MainDis.MoneyTakeMessage.replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
+                                    p.sendMessage(MainDis.Prefix +MainDis.MoneyTakeSuccess.replace("%target%", t.getName()).replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
+                                    p.sendMessage(MainDis.Prefix +MainDis.MoneyTakeMessage.replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
                                 }
                             }else {
                                 Player online = t.getPlayer();
                                 if(Main.getImplementer().getBalance(online) < Double.parseDouble(args[1])) {
-                                    p.sendMessage(MainDis.MoneyTakeError);
-                                    p.sendMessage(MainDis.BalanceStranger.replace("%target%", t.getName()).replace("%value%", String.valueOf(Main.getImplementer().getBalance(online.getName()))).replace("%currency%", MainDis.CurName));
+                                    p.sendMessage(MainDis.Prefix +MainDis.MoneyTakeError);
+                                    p.sendMessage(MainDis.Prefix +MainDis.BalanceStranger.replace("%target%", t.getName()).replace("%value%", String.valueOf(Main.getImplementer().getBalance(online.getName()))).replace("%currency%", MainDis.CurName));
                                 }else {
                                     Main.getImplementer().withdrawPlayer(online, Double.parseDouble(args[1]));
-                                    p.sendMessage(MainDis.MoneyTakeSuccess.replace("%target%", online.getName()).replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
-                                    p.sendMessage(MainDis.MoneyTakeMessage.replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
+                                    p.sendMessage(MainDis.Prefix +MainDis.MoneyTakeSuccess.replace("%target%", online.getName()).replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
+                                    p.sendMessage(MainDis.Prefix +MainDis.MoneyTakeMessage.replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
                                 }
                             }
                         }else {
-                            p.sendMessage(MainDis.NoBalance); //config
+                            p.sendMessage(MainDis.Prefix +MainDis.NoBalance); //config
                         }
                     }
 
 
                 }else {
-                    p.sendMessage(MainDis.WrongInput); //config
+                    p.sendMessage(MainDis.Prefix +MainDis.WrongInput); //config
                 }
             }
         }

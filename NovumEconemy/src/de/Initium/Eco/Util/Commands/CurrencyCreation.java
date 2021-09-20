@@ -14,18 +14,18 @@ public class CurrencyCreation implements CommandExecutor {
         if(sender instanceof Player) {
             Player p = (Player) sender;
             if (!(p.hasPermission("NE.eco.Main"))) {
-                p.sendMessage(MainDis.MissingMainPerms); //config
+                p.sendMessage(MainDis.Prefix +MainDis.MissingMainPerms); //config
                 return true;
             }
             if(p.hasPermission("NE.eco.createCurrency")) {
                 if(args[0].equalsIgnoreCase(Main.config().getString("settings.Eco.currencyName"))) {
-                    p.sendMessage(MainDis.SameCurrencyName);
+                    p.sendMessage(MainDis.Prefix +MainDis.SameCurrencyName);
                 }else {
                     Main.config().set("settings.Eco.currencyName", args[0]); //args[1] = currency Name
-                    p.sendMessage(MainDis.WährungCreationErfolg.replace("%currency%", args[0]));
+                    p.sendMessage(MainDis.Prefix + MainDis.WährungCreationErfolg.replace("%currency%", args[0]));
                 }
             }else {
-                p.sendMessage(MainDis.NoPerms);
+                p.sendMessage(MainDis.Prefix +MainDis.NoPerms);
             }
         }
 
