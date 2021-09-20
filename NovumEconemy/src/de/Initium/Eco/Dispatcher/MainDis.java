@@ -23,6 +23,8 @@ public class MainDis extends JavaPlugin {
     public static final String MoneySetSuccess = Main.config().getString("settings.Messages.GeldErfolgreichGesetzt");
     public static final String MoneyTakeSuccess = Main.config().getString("settings.Messages.GeldErfolgreichGenommen");
     public static final String MoneyTakeError = Main.config().getString("settings.Messages.FehlerGeldNehmen");
+    public static final String MoneyTakeMessage = Main.config().getString("settings.Messages.FehlerGeldNehmen");
+    public static final String MoneySetMessage = Main.config().getString("settings.Messages.GeldGesetztNachricht");
     public static final String Balance = Main.config().getString("settings.Messages.KontoStand");
     public static final String PageNumberOver0 = Main.config().getString("settings.Messages.PageNumberOver0");
     public static final String BalanceStranger = Main.config().getString("settings.Messages.KontoStandFremd");

@@ -43,6 +43,7 @@ public class Take implements CommandExecutor {
                                 }else {
                                     Main.getImplementer().withdrawPlayer(t, Double.parseDouble(args[1]));
                                     p.sendMessage(MainDis.MoneyTakeSuccess.replace("%target%", t.getName()).replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
+                                    p.sendMessage(MainDis.MoneyTakeMessage.replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
                                 }
                             }else {
                                 Player online = t.getPlayer();
@@ -51,7 +52,8 @@ public class Take implements CommandExecutor {
                                     p.sendMessage(MainDis.BalanceStranger.replace("%target%", t.getName()).replace("%value%", String.valueOf(Main.getImplementer().getBalance(online.getName()))).replace("%currency%", MainDis.CurName));
                                 }else {
                                     Main.getImplementer().withdrawPlayer(online, Double.parseDouble(args[1]));
-                                    p.sendMessage(MainDis.MoneyPaySuccess.replace("%target%", online.getName()).replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
+                                    p.sendMessage(MainDis.MoneyTakeSuccess.replace("%target%", online.getName()).replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
+                                    p.sendMessage(MainDis.MoneyTakeMessage.replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
                                 }
                             }
                         }else {

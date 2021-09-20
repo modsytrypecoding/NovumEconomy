@@ -87,6 +87,8 @@ public class Main extends JavaPlugin {
             configfileConfiguration.set("settings.Messages.GeldErfolgreichErhalten", "Der Spieler %player% hat dir %value% %currency% gezahlt");
             configfileConfiguration.set("settings.Messages.GeldErfolgreichGesetzt", "Du hast den KontoStand von %target% erfolgreich auf %value% %currency% gesetzt!");
             configfileConfiguration.set("settings.Messages.GeldErfolgreichGenommen", "Du hast dem Spieler %target% %value% %currency% entfernt!");
+            configfileConfiguration.set("settings.Messages.GeldGenommenNachricht", "Dir wurden %value% %currency% von deinem Konto entfernt!");
+            configfileConfiguration.set("settings.Messages.GeldGesetztNachricht", "Dein Konto wurde auf %value% %currency% gesetzt!");
             configfileConfiguration.set("settings.Messages.FehlerGeldNehmen", "Der Kontostand des Spielers ist zu niedrig!");
             configfileConfiguration.set("settings.Messages.KontoStand", "Dein Kontostand beträgt %value% %currency%");
             configfileConfiguration.set("settings.Messages.KontoStandFremd", "Der Kontostand von %target% beträgt %value% %currency%");
