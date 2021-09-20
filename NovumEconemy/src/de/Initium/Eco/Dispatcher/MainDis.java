@@ -5,8 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class MainDis extends JavaPlugin {
 
-    //config
-    public static final String Prefix = "[§DNE§r] ";
+    public static final String Prefix = Main.config().getString("settings.Messages.Prefix");
     public static final String CurName = Main.config().getString("settings.Eco.currencyName");
     public static final String NoPerms = Main.config().getString("settings.Messages.NoPerms");
     public static final Double StartMoney = Main.config().getDouble("settings.Eco.startMoney");

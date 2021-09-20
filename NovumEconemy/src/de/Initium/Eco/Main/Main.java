@@ -74,6 +74,7 @@ public class Main extends JavaPlugin {
             configfileConfiguration.set("settings.Eco.currencyName", "Kronen");
             configfileConfiguration.set("settings.Eco.startMoney", 100);
             configfileConfiguration.createSection("settings.Messages");
+            configfileConfiguration.set("settings.Messages.Prefix", "[§DNE§r] ");
             configfileConfiguration.set("settings.Messages.NoPerms", "Dazu hast du keine Berechtigungen!");
             configfileConfiguration.set("settings.Messages.WährungsNamenBestätigung", "Die Währung %currency% wurde Erstellt!");
             configfileConfiguration.set("settings.Messages.GleicherWährungsName", "Diese Währung hat bereits diesen Namen");
