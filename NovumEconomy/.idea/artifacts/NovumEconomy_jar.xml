@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="NovumEconomy:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/NovumEconomy_jar</output-path>
+    <root id="archive" name="NovumEconomy.jar">
+      <element id="module-output" name="NovumEconomy" />
+    </root>
+  </artifact>
+</component>

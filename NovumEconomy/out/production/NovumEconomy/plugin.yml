@@ -1,0 +1,24 @@
+name: NovumEconomy
+main: de.Initium.Eco.Main.Main
+version: 0.1
+api-version: 1.17
+author: Modstrype
+authors:
+  - doppelkool
+website: https://initium-novum.net
+depend:
+  - Vault
+
+commands:
+  money:
+    description: Zeigt dir deinen KontoStand
+  CNC:
+    description: Erstelle einen Namen fuer deine Waehrung
+  Give:
+    description: Gebe einem Spieler einen bestimmten Betrag
+  Pay:
+    description: Zahle einen bestimmten Betrag an ein Spieler
+  Take:
+    description: Nehme einen bestimmten Betrag von einem Spieler
+  Set:
+    description: Setzte den KontoStand eines Spielers
