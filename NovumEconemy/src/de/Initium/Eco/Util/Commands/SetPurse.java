@@ -19,11 +19,17 @@ public class SetPurse implements CommandExecutor {
             if(p.hasPermission("NE.eco.SetPurse")) {
                 PreparedStatement statement = null;
                 try {
-                    statement = MySqlConnector.connection.prepareStatement("INSERT INTO PlayerPurse(UUID, Purse) VALUES (?,?)");
-                    statement.setString(1, p.getUniqueId().toString());
-                    statement.setDouble(2, 100);
-                    statement.execute();
-                } catch (SQLException e) {
+                   if (MySqlConnector.connection.isClosed()) {
+                       MySqlConnector.connect();
+
+                    }else {
+                       statement = MySqlConnector.connection.prepareStatement("INSERT INTO PlayerPurse(UUID, Purse) VALUES (?,?)");
+                       statement.setString(1, p.getUniqueId().toString());
+                       statement.setDouble(2, 100);
+                       statement.execute();
+                   }
+
+                } catch (SQLException | ClassNotFoundException e) {
                     p.sendMessage(MainDis.Prefix + "Dieser Spieler hat bereits ein Konto");
                     e.printStackTrace();
                 }
