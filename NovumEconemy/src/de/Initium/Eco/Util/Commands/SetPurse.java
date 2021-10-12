@@ -25,7 +25,7 @@ public class SetPurse implements CommandExecutor {
                     }else {
                        statement = MySqlConnector.connection.prepareStatement("INSERT INTO PlayerPurse(UUID, Purse) VALUES (?,?)");
                        statement.setString(1, p.getUniqueId().toString());
-                       statement.setDouble(2, 100);
+                       statement.setDouble(2, MainDis.StartMoney);
                        statement.execute();
                    }
 

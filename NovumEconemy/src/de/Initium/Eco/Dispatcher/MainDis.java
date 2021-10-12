@@ -29,6 +29,14 @@ public class MainDis extends JavaPlugin {
     public static final String BalanceStranger = Main.config().getString("settings.Messages.KontoStandFremd");
     public static final String BalanceToLow = Main.config().getString("settings.Messages.ZuWenigGeld");
 
+    //MySql-Data
+    public static final String Host = Main.config().getString("settings.MySql-Data.Host");
+    public static final String DataBase = Main.config().getString("settings.MySql-Data.DataBase");
+    public static final String UserName = Main.config().getString("settings.MySql-Data.Username");
+    public static final int Port = Main.config().getInt("settings.MySql-Data.Port");
+    public static final String Password = Main.config().getString("settings.MySql-Data.Password");
+
+
 
 
 }

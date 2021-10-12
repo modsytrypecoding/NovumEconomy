@@ -21,7 +21,8 @@ public class CurrencyCreation implements CommandExecutor {
                 if(args[0].equalsIgnoreCase(Main.config().getString("settings.Eco.currencyName"))) {
                     p.sendMessage(MainDis.Prefix +MainDis.SameCurrencyName);
                 }else {
-                    Main.config().set("settings.Eco.currencyName", args[0]); //args[1] = currency Name
+                    Main.config().set("settings.Eco.currencyName", args[0]); //args[0] = currency Name
+                    Main.saveConfiguration();
                     p.sendMessage(MainDis.Prefix + MainDis.WährungCreationErfolg.replace("%currency%", args[0]));
                 }
             }else {

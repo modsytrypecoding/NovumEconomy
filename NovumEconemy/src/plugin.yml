@@ -21,4 +21,4 @@ commands:
   Set:
     description: Setzte den KontoStand eines Spielers
   setPurse:
-    description: Setzte das Konto eines Spielers
+    description: Setzte das Konto eines SpielersCNC

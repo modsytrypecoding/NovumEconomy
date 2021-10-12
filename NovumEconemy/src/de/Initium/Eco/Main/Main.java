@@ -89,7 +89,12 @@ public class Main extends JavaPlugin {
             configfileConfiguration.set("settings.Messages.KontoStandFremd", "Der Kontostand von %target% beträgt %value% %currency%");
             configfileConfiguration.set("settings.Messages.PageNumberOver0", "Die eingegebene Seitenzahl muss eine Nummer über 0 sein");
             configfileConfiguration.set("settings.Messages.ZuWenigGeld", "Du hast zu wenig Geld!");
-
+            configfileConfiguration.createSection("settings.MySql-Data");
+            configfileConfiguration.set("settings.MySql-Data.Host", "localhost");
+            configfileConfiguration.set("settings.MySql-Data.Database", "Economy");
+            configfileConfiguration.set("settings.MySql-Data.Username", "Economy");
+            configfileConfiguration.set("settings.MySql-Data.Port", 3306);
+            configfileConfiguration.set("settings.MySql-Data.Password", "2Q-kV6Rx3yr]c2aI");
 
             saveConfiguration();
         }

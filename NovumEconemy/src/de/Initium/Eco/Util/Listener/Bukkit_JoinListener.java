@@ -1,6 +1,7 @@
 package de.Initium.Eco.Util.Listener;
 
 
+import de.Initium.Eco.Dispatcher.MainDis;
 import de.Initium.Eco.Main.MySqlConnector;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,7 +18,7 @@ public class Bukkit_JoinListener implements Listener {
         if(!e.getPlayer().hasPlayedBefore()) {
             PreparedStatement statement = MySqlConnector.connection.prepareStatement("INSERT INTO PlayerPurse(UUID, Purse) VALUES (?,?)");
             statement.setString(1, e.getPlayer().getUniqueId().toString());
-            statement.setDouble(2, 100);
+            statement.setDouble(2, MainDis.StartMoney);
             statement.execute();
         }
 
