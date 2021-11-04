@@ -44,7 +44,6 @@ public class Set implements CommandExecutor {
                                     Main.getImplementer().withdrawPlayer(t, Main.getImplementer().getBalance(t));
                                     Main.getImplementer().depositPlayer(t, Double.parseDouble(args[1]));
                                     p.sendMessage(MainDis.Prefix +MainDis.MoneySetSuccess.replace("%target%", t.getName()).replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
-                                    p.sendMessage(MainDis.Prefix +MainDis.MoneySetMessage.replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
                                 }else {
                                     p.sendMessage(MainDis.Prefix + MainDis.NoBalance);
                                 }
@@ -53,7 +52,8 @@ public class Set implements CommandExecutor {
                                 Player online = t.getPlayer();
                                 Main.getImplementer().withdrawPlayer(online.getName(), Main.getImplementer().getBalance(online));
                                 Main.getImplementer().depositPlayer(online.getName(), Double.parseDouble(args[1]));
-                                p.sendMessage(MainDis.Prefix +MainDis.MoneySetMessage.replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
+                                p.sendMessage(MainDis.Prefix +MainDis.MoneySetSuccess.replace("%target%", t.getName()).replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
+                                online.sendMessage(MainDis.Prefix +MainDis.MoneySetMessage.replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
                             }
                         }
                     }else {

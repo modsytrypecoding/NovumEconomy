@@ -46,12 +46,10 @@ public class Take implements CommandExecutor {
                                 if(!t.isOnline()) {
                                     if(t.hasPlayedBefore()) {
                                         if(Main.getImplementer().getBalance(t) < Double.parseDouble(args[1])) {
-                                            p.sendMessage(MainDis.Prefix +MainDis.MoneyTakeError); //config
-                                            p.sendMessage(MainDis.Prefix +MainDis.BalanceStranger.replace("%target%", t.getName()).replace("%value%", String.valueOf(Main.getImplementer().getBalance(t))).replace("%currency%", MainDis.CurName));
+                                            p.sendMessage(MainDis.Prefix +MainDis.MoneyTakeError + "\n" + MainDis.BalanceStranger.replace("%target%", t.getName()).replace("%value%", String.valueOf(Main.getImplementer().getBalance(t))).replace("%currency%", MainDis.CurName)); //config
                                         }else {
                                             Main.getImplementer().withdrawPlayer(t, Double.parseDouble(args[1]));
                                             p.sendMessage(MainDis.Prefix +MainDis.MoneyTakeSuccess.replace("%target%", t.getName()).replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
-                                            p.sendMessage(MainDis.Prefix +MainDis.MoneyTakeMessage.replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
                                         }
                                     }else {
                                         p.sendMessage(MainDis.Prefix + MainDis.NoBalance);
@@ -65,7 +63,7 @@ public class Take implements CommandExecutor {
                                     }else {
                                         Main.getImplementer().withdrawPlayer(online, Double.parseDouble(args[1]));
                                         p.sendMessage(MainDis.Prefix +MainDis.MoneyTakeSuccess.replace("%target%", online.getName()).replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
-                                        p.sendMessage(MainDis.Prefix +MainDis.MoneyTakeMessage.replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
+                                        online.sendMessage(MainDis.Prefix +MainDis.MoneyTakeMessage.replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
                                     }
                                 }
                             }

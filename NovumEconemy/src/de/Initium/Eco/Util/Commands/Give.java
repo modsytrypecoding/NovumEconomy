@@ -40,28 +40,33 @@ public class Give implements CommandExecutor {
                     if(p.hasPermission("NE.eco.give")) {
                         if(args.length== 2) {
                             if(isDouble(args[1])) {
-                                OfflinePlayer t = Bukkit.getOfflinePlayer(args[0]);
-                                if(!t.isOnline()) {
-                                    if(t.hasPlayedBefore()) {
+                                if(!(args[1].contains(".") || args[1].contains("-"))) {
+                                    OfflinePlayer t = Bukkit.getOfflinePlayer(args[0]);
+                                    if(!t.isOnline()) {
+                                        if(t.hasPlayedBefore()) {
+                                            if(Double.parseDouble(args[1]) > Integer.MAX_VALUE) {
+                                                p.sendMessage(MainDis.Prefix +MainDis.InputNumberToBig); //config
+                                            }else {
+                                                Main.getImplementer().depositPlayer(t, Double.parseDouble(args[1]));
+                                                p.sendMessage(MainDis.Prefix +MainDis.MoneyGiveSuccess.replace("%target%", t.getName()).replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
+                                            }
+                                        }else {
+                                            p.sendMessage(MainDis.Prefix + MainDis.NoBalance);
+                                        }
+
+                                    }else {
+                                        Player online = t.getPlayer();
                                         if(Double.parseDouble(args[1]) > Integer.MAX_VALUE) {
                                             p.sendMessage(MainDis.Prefix +MainDis.InputNumberToBig); //config
                                         }else {
-                                            Main.getImplementer().depositPlayer(t, Double.parseDouble(args[1]));
+                                            Main.getImplementer().depositPlayer(online.getName(), Double.parseDouble(args[1]));
                                             p.sendMessage(MainDis.Prefix +MainDis.MoneyGiveSuccess.replace("%target%", t.getName()).replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
                                         }
-                                    }else {
-                                        p.sendMessage(MainDis.Prefix + MainDis.NoBalance);
                                     }
-
                                 }else {
-                                    Player online = t.getPlayer();
-                                    if(Double.parseDouble(args[1]) > Integer.MAX_VALUE) {
-                                        p.sendMessage(MainDis.Prefix +MainDis.InputNumberToBig); //config
-                                    }else {
-                                        Main.getImplementer().depositPlayer(online.getName(), Double.parseDouble(args[1]));
-                                        p.sendMessage(MainDis.Prefix +MainDis.MoneyGiveSuccess.replace("%target%", t.getName()).replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
-                                    }
+                                    p.sendMessage(MainDis.Prefix +MainDis.WrongInput);
                                 }
+
                             }else{
                                 p.sendMessage(MainDis.Prefix +MainDis.WrongInput); //config
                             }

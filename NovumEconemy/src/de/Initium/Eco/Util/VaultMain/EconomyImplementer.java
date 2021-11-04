@@ -77,13 +77,17 @@ public class EconomyImplementer implements Economy {
         UUID uuid = p.getUniqueId();
         double purse = 0;
         PreparedStatement statement = null;
+        PreparedStatement statement2 = null;
+
         try {
-            statement = MySqlConnector.connection.prepareStatement("SELECT Purse FROM PlayerPurse WHERE UUID = ?");
+            statement2 = MySqlConnector.connection.prepareStatement("USE Storage");
+            statement2.execute();
+            statement = MySqlConnector.connection.prepareStatement("SELECT balance FROM PlayerInformationen WHERE UUID = ?");
             statement.setString(1, uuid.toString());
             ResultSet result = statement.executeQuery();
             if(!(result == null)) {
                 while (result.next()) {
-                    purse = result.getDouble("Purse");
+                    purse = result.getDouble("balance");
                 }
             }
 
@@ -99,13 +103,16 @@ public class EconomyImplementer implements Economy {
         UUID uuid = offlinePlayer.getUniqueId();
         double purse = 0;
         PreparedStatement statement = null;
+        PreparedStatement statement2 = null;
         try {
-            statement = MySqlConnector.connection.prepareStatement("SELECT Purse FROM PlayerPurse WHERE UUID = ?");
+            statement2 = MySqlConnector.connection.prepareStatement("USE Storage");
+            statement2.execute();
+            statement = MySqlConnector.connection.prepareStatement("SELECT balance FROM PlayerInformationen WHERE UUID = ?");
             statement.setString(1, uuid.toString());
             ResultSet result = statement.executeQuery();
             if(!(result == null)) {
                 while (result.next()) {
-                    purse = result.getDouble("Purse");
+                    purse = result.getDouble("balance");
                 }
             }
         } catch (SQLException e) {
@@ -121,13 +128,16 @@ public class EconomyImplementer implements Economy {
         UUID uuid = p.getUniqueId();
         double purse = 0;
         PreparedStatement statement = null;
+        PreparedStatement statement2 = null;
         try {
-            statement = MySqlConnector.connection.prepareStatement("SELECT Purse FROM PlayerPurse WHERE UUID = ?");
+            statement2 = MySqlConnector.connection.prepareStatement("USE Storage");
+            statement2.execute();
+            statement = MySqlConnector.connection.prepareStatement("SELECT balance FROM PlayerInformationen WHERE UUID = ?");
             statement.setString(1, uuid.toString());
             ResultSet result = statement.executeQuery();
             if(!(result == null)) {
                 while (result.next()) {
-                    purse = result.getDouble("Purse");
+                    purse = result.getDouble("balance");
                 }
             }
         } catch (SQLException e) {
@@ -141,13 +151,16 @@ public class EconomyImplementer implements Economy {
         UUID uuid = offlinePlayer.getUniqueId();
         double purse = 0;
         PreparedStatement statement = null;
+        PreparedStatement statement2 = null;
         try {
-            statement = MySqlConnector.connection.prepareStatement("SELECT Purse FROM PlayerPurse WHERE UUID = ?");
+            statement2 = MySqlConnector.connection.prepareStatement("USE Storage");
+            statement2.execute();
+            statement = MySqlConnector.connection.prepareStatement("SELECT balance FROM PlayerInformationen WHERE UUID = ?");
             statement.setString(1, uuid.toString());
             ResultSet result = statement.executeQuery();
             if(!(result == null)) {
                 while (result.next()) {
-                    purse = result.getDouble("Purse");
+                    purse = result.getDouble("balance");
                 }
             }
         } catch (SQLException e) {
@@ -183,8 +196,11 @@ public class EconomyImplementer implements Economy {
         double oldbalance = getBalance(p.getName());
         //check if oldbalance > v
         PreparedStatement statement = null;
+        PreparedStatement statement2 = null;
         try {
-            statement = MySqlConnector.connection.prepareStatement("UPDATE PlayerPurse SET Purse = ? WHERE UUID = ?");
+            statement2 = MySqlConnector.connection.prepareStatement("USE Storage");
+            statement2.execute();
+            statement = MySqlConnector.connection.prepareStatement("UPDATE PlayerInformationen SET balance = ? WHERE UUID = ?");
             statement.setDouble(1, oldbalance - v);
             statement.setString(2, uuid.toString());
             statement.execute();
@@ -201,8 +217,11 @@ public class EconomyImplementer implements Economy {
         double oldbalance = getBalance(offlinePlayer);
         //check if oldbalance > v
         PreparedStatement statement = null;
+        PreparedStatement statement2 = null;
         try {
-            statement = MySqlConnector.connection.prepareStatement("UPDATE PlayerPurse SET Purse = ? WHERE UUID = ?");
+            statement2 = MySqlConnector.connection.prepareStatement("USE Storage");
+            statement2.execute();
+            statement = MySqlConnector.connection.prepareStatement("UPDATE PlayerInformationen SET balance = ? WHERE UUID = ?");
             statement.setDouble(1, oldbalance - v);
             statement.setString(2, uuid.toString());
             statement.execute();
@@ -219,8 +238,11 @@ public class EconomyImplementer implements Economy {
         double oldbalance = getBalance(p.getName());
         //check if oldbalance > v
         PreparedStatement statement = null;
+        PreparedStatement statement2 = null;
         try {
-            statement = MySqlConnector.connection.prepareStatement("UPDATE PlayerPurse SET Purse = ? WHERE UUID = ?");
+            statement2 = MySqlConnector.connection.prepareStatement("USE Storage");
+            statement2.execute();
+            statement = MySqlConnector.connection.prepareStatement("UPDATE PlayerInformationen SET balance = ? WHERE UUID = ?");
             statement.setDouble(1, oldbalance - v);
             statement.setString(2, uuid.toString());
             statement.execute();
@@ -236,8 +258,11 @@ public class EconomyImplementer implements Economy {
         double oldbalance = getBalance(offlinePlayer);
         //check if oldbalance > v
         PreparedStatement statement = null;
+        PreparedStatement statement2 = null;
         try {
-            statement = MySqlConnector.connection.prepareStatement("UPDATE PlayerPurse SET Purse = ? WHERE UUID = ?");
+            statement2 = MySqlConnector.connection.prepareStatement("USE Storage");
+            statement2.execute();
+            statement = MySqlConnector.connection.prepareStatement("UPDATE PlayerInformationen SET balance = ? WHERE UUID = ?");
             statement.setDouble(1, oldbalance - v);
             statement.setString(2, uuid.toString());
             statement.execute();
@@ -254,8 +279,11 @@ public class EconomyImplementer implements Economy {
         double oldbalance = getBalance(p.getName());
         double newbalance = oldbalance + v;
         PreparedStatement statement = null;
+        PreparedStatement statement2 = null;
         try {
-            statement = MySqlConnector.connection.prepareStatement("UPDATE PlayerPurse SET Purse = ? WHERE UUID = ?");
+            statement2 = MySqlConnector.connection.prepareStatement("USE Storage");
+            statement2.execute();
+            statement = MySqlConnector.connection.prepareStatement("UPDATE PlayerInformationen SET balance = ? WHERE UUID = ?");
             statement.setDouble(1, newbalance);
             statement.setString(2, uuid.toString());
             statement.execute();
@@ -273,8 +301,11 @@ public class EconomyImplementer implements Economy {
         double oldbalance = getBalance(offlinePlayer);
         double newbalance = oldbalance + v;
         PreparedStatement statement = null;
+        PreparedStatement statement2 = null;
         try {
-            statement = MySqlConnector.connection.prepareStatement("UPDATE PlayerPurse SET Purse = ? WHERE UUID = ?");
+            statement2 = MySqlConnector.connection.prepareStatement("USE Storage");
+            statement2.execute();
+            statement = MySqlConnector.connection.prepareStatement("UPDATE PlayerInformationen SET balance = ? WHERE UUID = ?");
             statement.setDouble(1, newbalance);
             statement.setString(2, uuid.toString());
             statement.execute();
@@ -291,8 +322,11 @@ public class EconomyImplementer implements Economy {
         double oldbalance = getBalance(p.getName());
         double newbalance = oldbalance + v;
         PreparedStatement statement = null;
+        PreparedStatement statement2 = null;
         try {
-            statement = MySqlConnector.connection.prepareStatement("UPDATE PlayerPurse SET Purse = ? WHERE UUID = ?");
+            statement2 = MySqlConnector.connection.prepareStatement("USE Storage");
+            statement2.execute();
+            statement = MySqlConnector.connection.prepareStatement("UPDATE PlayerInformationen SET balance = ? WHERE UUID = ?");
             statement.setDouble(1, newbalance);
             statement.setString(2, uuid.toString());
             statement.execute();
@@ -308,8 +342,11 @@ public class EconomyImplementer implements Economy {
         double oldbalance = getBalance(offlinePlayer);
         double newbalance = oldbalance + v;
         PreparedStatement statement = null;
+        PreparedStatement statement2 = null;
         try {
-            statement = MySqlConnector.connection.prepareStatement("UPDATE PlayerPurse SET Purse = ? WHERE UUID = ?");
+            statement2 = MySqlConnector.connection.prepareStatement("USE Storage");
+            statement2.execute();
+            statement = MySqlConnector.connection.prepareStatement("UPDATE PlayerInformationen SET balance = ? WHERE UUID = ?");
             statement.setDouble(1, newbalance);
             statement.setString(2, uuid.toString());
             statement.execute();

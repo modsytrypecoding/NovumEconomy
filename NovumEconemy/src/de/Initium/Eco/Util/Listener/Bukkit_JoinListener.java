@@ -12,13 +12,18 @@ import java.sql.SQLException;
 
 
 public class Bukkit_JoinListener implements Listener {
+   public static PreparedStatement statement = null;
+   public static PreparedStatement statement2 = null;
 
     @EventHandler
     public static void onJoin(PlayerJoinEvent e) throws SQLException {
         if(!e.getPlayer().hasPlayedBefore()) {
-            PreparedStatement statement = MySqlConnector.connection.prepareStatement("INSERT INTO PlayerPurse(UUID, Purse) VALUES (?,?)");
+            statement2 = MySqlConnector.connection.prepareStatement("USE Storage");
+            statement2.execute();
+            statement = MySqlConnector.connection.prepareStatement("INSERT INTO PlayerInformationen(UUID, balance) VALUES (?,?) ON DUPLICATE KEY UPDATE balance = ?");
             statement.setString(1, e.getPlayer().getUniqueId().toString());
             statement.setDouble(2, MainDis.StartMoney);
+            statement.setDouble(3, MainDis.StartMoney);
             statement.execute();
         }
 

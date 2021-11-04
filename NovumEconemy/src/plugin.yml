@@ -12,7 +12,7 @@ commands:
     description: Zeigt dir deinen KontoStand
   CNC:
     description: Erstelle einen Namen fuer deine Waehrung
-  Give:
+  mgive:
     description: Gebe einem Spieler einen bestimmten Betrag
   Pay:
     description: Zahle einen bestimmten Betrag an ein Spieler
@@ -20,5 +20,3 @@ commands:
     description: Nehme einen bestimmten Betrag von einem Spieler
   Set:
     description: Setzte den KontoStand eines Spielers
-  setPurse:
-    description: Setzte das Konto eines SpielersCNC

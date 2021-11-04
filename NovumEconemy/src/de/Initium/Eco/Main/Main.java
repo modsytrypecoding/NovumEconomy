@@ -44,11 +44,10 @@ public class Main extends JavaPlugin {
         VaultHook.Hook();
         getCommand("money").setExecutor(new Money());
         getCommand("CNC").setExecutor(new CurrencyCreation());
-        getCommand("give").setExecutor(new Give());
+        getCommand("mgive").setExecutor(new Give());
         getCommand("pay").setExecutor(new Pay());
         getCommand("take").setExecutor(new Take());
         getCommand("set").setExecutor(new Set());
-        getCommand("setPurse").setExecutor(new SetPurse());
 
         PluginManager pl = Bukkit.getPluginManager();
         pl.registerEvents(new Bukkit_JoinListener(), this);
@@ -91,10 +90,10 @@ public class Main extends JavaPlugin {
             configfileConfiguration.set("settings.Messages.ZuWenigGeld", "Du hast zu wenig Geld!");
             configfileConfiguration.createSection("settings.MySql-Data");
             configfileConfiguration.set("settings.MySql-Data.Host", "localhost");
-            configfileConfiguration.set("settings.MySql-Data.Database", "Economy");
-            configfileConfiguration.set("settings.MySql-Data.Username", "Economy");
+            configfileConfiguration.set("settings.MySql-Data.Database", "Storage");
+            configfileConfiguration.set("settings.MySql-Data.Username", "PlayerInformationen");
             configfileConfiguration.set("settings.MySql-Data.Port", 3306);
-            configfileConfiguration.set("settings.MySql-Data.Password", "2Q-kV6Rx3yr]c2aI");
+            configfileConfiguration.set("settings.MySql-Data.Password", "hQi7Y@5CfGdatDlU");
 
             saveConfiguration();
         }

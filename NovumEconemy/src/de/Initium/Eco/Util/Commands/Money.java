@@ -9,6 +9,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.util.ChatPaginator;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -52,29 +53,69 @@ public class Money implements CommandExecutor {
                             {
                                 p.sendMessage(MainDis.Prefix +MainDis.PageNumberOver0);
                             }else {
+                                if(!MySqlConnector.connection.isClosed()) {
+                                    MySqlConnector.connection.close();
+                                    MySqlConnector.connect();
+                                }
+                                try {
+                                    PreparedStatement statement2 = MySqlConnector.connection.prepareStatement("USE Storage");
+                                    statement2.execute();
+                                    PreparedStatement statement = MySqlConnector.connection.prepareStatement("SELECT playername,balance FROM PlayerInformationen");
+                                    ResultSet result = statement.executeQuery();
+                                    while(result.next()) {
+                                        String UUID = result.getString("playername");
+                                        Double purse = result.getDouble("balance");
+                                        Purse.put(UUID, purse);
+                                    }
+                                } catch (SQLException e) {
+                                    e.printStackTrace();
+                                } {
+
+                                }
+
                                 Integer arg_numb = (Integer) temp;
                                 Map<String, Double> temp_map_sorted = sort(Purse);
+                                Map<String, Double> temp_map_unsorted = Purse;
+
                                 int temp_seitenanzahl = (int) Math.ceil(temp_map_sorted.size() * 0.1);
                                 int siteToShow;
-                                if(temp_seitenanzahl < arg_numb) siteToShow = temp_seitenanzahl;
-                                else siteToShow = arg_numb;
-                                int showFirst = siteToShow * 10 - 9;
-                                int showLast = siteToShow * 10 - 9 + 10 -1;
-                                if (showLast > temp_map_sorted.size()) {
-                                    showLast = Purse.size();
+                                if(temp_seitenanzahl < arg_numb)  {
+                                    siteToShow = temp_seitenanzahl;
+                                } else {
+                                    siteToShow = arg_numb;
                                 }
-                                p.sendMessage(getMSG(siteToShow));
+
+                                int showFirst = siteToShow * 10 - 9;
+                                int showLast = siteToShow * 10 - 9 + 9;
+
+                                if (showLast > temp_map_sorted.size())
+                                    showLast = temp_map_unsorted.size();
+
+                                HashMap<String, Double> showPlayer = new HashMap<>();
+                                for(int i = showFirst; i <= showLast; i++)
+                                {
+                                    showPlayer.put(new ArrayList<>(temp_map_sorted.keySet()).get(i-1), new ArrayList<>(temp_map_sorted.values()).get(i-1));
+                                }
+
+                                p.sendMessage(getMSG(siteToShow, sort(showPlayer)));
                             }
                         }
                     }
                     if(args.length == 1) {
                         if(args[0].equalsIgnoreCase("top")) {
+                            if(!MySqlConnector.connection.isClosed()) {
+                                MySqlConnector.connection.close();
+                                MySqlConnector.connect();
+                            }
+
                             try {
-                                PreparedStatement statement = MySqlConnector.connection.prepareStatement("SELECT * FROM PlayerPurse");
+                                PreparedStatement statement2 = MySqlConnector.connection.prepareStatement("USE Storage");
+                                statement2.execute();
+                                PreparedStatement statement = MySqlConnector.connection.prepareStatement("SELECT playername,balance FROM PlayerInformationen");
                                 ResultSet result = statement.executeQuery();
                                 while(result.next()) {
-                                    String UUID = result.getString("UUID");
-                                    Double purse = result.getDouble("Purse");
+                                    String UUID = result.getString("playername");
+                                    Double purse = result.getDouble("balance");
                                     Purse.put(UUID, purse);
                                 }
                             } catch (SQLException e) {
@@ -82,7 +123,23 @@ public class Money implements CommandExecutor {
                             } {
 
                             }
-                            p.sendMessage(getMSG(1));
+                            Map<String, Double> temp_map_sorted = sort(Purse);
+                            Map<String, Double> temp_map_unsorted = Purse;
+
+                            int showFirst = 1;
+                            int showLast = 10;
+
+                            if (showLast > temp_map_sorted.size())
+                                showLast = temp_map_unsorted.size();
+
+                            HashMap<String, Double> showPlayer = new HashMap<>();
+                            for(int i = showFirst; i <= showLast; i++)
+                            {
+                                showPlayer.put(new ArrayList<>(temp_map_sorted.keySet()).get(i-1), new ArrayList<>(temp_map_sorted.values()).get(i-1));
+                            }
+
+                            p.sendMessage(getMSG(1, sort(showPlayer)));
+
 
                         }else {
                             if(p.hasPermission("NE.eco.seeMoney")) {
@@ -139,15 +196,15 @@ public class Money implements CommandExecutor {
             return null;
         }
     }
-    public static String getMSG(Integer site)
+    public static String getMSG(Integer site, Map<String, Double> List)
     {
         //Message-Creation (PlayerName : Value CurrencyName)
         String MSG = "====Spieler-Top===Seite " + site + "====\n";
         int i = site * 10 -9;
-        for(Map.Entry<String, Double> entry : sort(Purse).entrySet())
+        for(Map.Entry<String, Double> entry : List.entrySet())
         {
-            OfflinePlayer off = Bukkit.getOfflinePlayer(UUID.fromString(entry.getKey()));
-            MSG += i + ": " + off.getName() +  ": §a" + entry.getValue() + "§r " + MainDis.CurName +  "\n";
+            String name = entry.getKey();
+            MSG += i + ": " + name +  ": §a" + entry.getValue() + "§r " + MainDis.CurName +  "\n";
             i++;
         }
         return MSG;

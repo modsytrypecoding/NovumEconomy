@@ -63,7 +63,7 @@ public class Pay implements CommandExecutor {
                                         Main.getImplementer().withdrawPlayer(p.getName(), Double.parseDouble(args[1]));
                                         Main.getImplementer().depositPlayer(t, Double.parseDouble(args[1]));
                                         p.sendMessage(MainDis.Prefix +MainDis.MoneyPaySuccess.replace("%target%", online.getName()).replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
-                                        p.sendMessage(MainDis.Prefix +MainDis.MoneyReceiveSuccess.replace("%player%", p.getName()).replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
+                                        online.sendMessage(MainDis.Prefix +MainDis.MoneyReceiveSuccess.replace("%player%", p.getName()).replace("%value%", args[1]).replace("%currency%", MainDis.CurName));
                                     }
                                 }
 
